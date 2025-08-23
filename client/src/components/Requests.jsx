@@ -14,10 +14,15 @@ const Requests = () => {
       const res = axios.post(
         BASE_URL + "/request/review/" + status + "/" + _id,
         {},
-        { withCredentials: true }
+        {
+          withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${window.localStorage.getItem("token")}`
+          }
+        }
       );
       dispatch(removeRequest(_id));
-    } catch (err) {}
+    } catch (err) { }
   };
 
   const fetchRequests = async () => {
@@ -26,7 +31,7 @@ const Requests = () => {
         withCredentials: true,
       });
       dispatch(addRequests(res.data.data));
-    } catch (err) {}
+    } catch (err) { }
   };
 
   useEffect(() => {

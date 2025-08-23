@@ -13,10 +13,16 @@ const UserCard = ({ user }) => {
       const res = await axios.post(
         BASE_URL + "/request/send/" + status + "/" + userId,
         {},
-        { withCredentials: true }
+        {
+          withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${window.localStorage.getItem("token")}`
+          }
+        },
+
       );
       dispatch(removeUserFromFeed(userId));
-    } catch (err) {}
+    } catch (err) { }
   };
 
   return (
@@ -49,7 +55,7 @@ const UserCard = ({ user }) => {
           className="action-btn ignore-btn"
           onClick={() => handleSendRequest("ignored", _id)}
         >
-        <span className="btn-icon"></span> Ignore
+          <span className="btn-icon"></span> Ignore
         </button>
         <button
           className="action-btn interested-btn"

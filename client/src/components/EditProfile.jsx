@@ -18,7 +18,7 @@ const EditProfile = ({ user }) => {
   const [showToast, setShowToast] = useState(false);
 
   const saveProfile = async () => {
-  
+
     setError("");
     try {
       const res = await axios.patch(
@@ -31,7 +31,12 @@ const EditProfile = ({ user }) => {
           gender,
           about,
         },
-        { withCredentials: true }
+        {
+          withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${window.localStorage.getItem("token")}`
+          }
+        }
       );
       dispatch(addUser(res?.data?.data));
       setShowToast(true);
@@ -120,10 +125,10 @@ const EditProfile = ({ user }) => {
         </div>
 
         <div className="profile-preview-card">
-            <h3 className="preview-title">Your Public Profile</h3>
-            <UserCard
-                user={{ firstName, lastName, photoURL, age, gender, about }}
-            />
+          <h3 className="preview-title">Your Public Profile</h3>
+          <UserCard
+            user={{ firstName, lastName, photoURL, age, gender, about }}
+          />
         </div>
       </div>
       {showToast && (

@@ -29,7 +29,8 @@ authRouter.post("/signup", async (req, res) => {
             maxAge: 24 * 60 * 60 * 1000,
             sameSite:'none'
         });
-
+        res.setHeader("TOKEN",token)
+        
 
         res.json({message:"User added successfully.",data:savedUser});
     } catch (error) {

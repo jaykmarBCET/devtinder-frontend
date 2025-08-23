@@ -30,6 +30,9 @@ const Chat = () => {
     try {
       const chat = await axios.get(BASE_URL + "/chat/" + targetUserId, {
         withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${window.localStorage.getItem("token")}`
+        }
       });
 
       const chatMessages = chat?.data?.messages

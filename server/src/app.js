@@ -16,6 +16,7 @@ app.use(
     origin:[process.env.FRONTEND_URL],
     methods:["GET","POST","PATCH","PUT"],
     credentials: true,
+    exposedHeaders:["TOKEN"]
   })
 );
 

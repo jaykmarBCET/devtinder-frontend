@@ -17,6 +17,7 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+
   const handleLogin = async () => {
     try {
       const res = await axios.post(
@@ -24,6 +25,7 @@ const Login = () => {
         { emailId, password },
         { withCredentials: true }
       );
+      window.localStorage.setItem("token", res.headers.token)
       dispatch(addUser(res.data));
       navigate("/");
     } catch (err) {
@@ -39,6 +41,7 @@ const Login = () => {
         { withCredentials: true }
       );
       dispatch(addUser(res.data.data));
+      window.localStorage.setItem("token", res.headers.token)
       navigate("/profile");
     } catch (err) {
       setError(err?.response?.data || "Something went wrong");
