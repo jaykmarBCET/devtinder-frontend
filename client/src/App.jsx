@@ -8,22 +8,20 @@ import Requests from "./components/Requests";
 import Premium from "./components/Premium";
 import Chat from "./components/Chat";
 
-function App() {
+export default function App() {
   return (
-      <HashRouter>
-        <Routes>
-          <Route path="/" element={<Body />}>
-            <Route index element={<Feed />} />
-            <Route path="login" element={<Login />} />
-            <Route path="profile" element={<Profile />} />
-            <Route path="connections" element={<Connections />} />
-            <Route path="requests" element={<Requests />} />
-            <Route path="/premium" element={<Premium />} />
-            <Route path="/chat/:targetUserId" element={<Chat />} />
-          </Route>
-        </Routes>
-      </HashRouter>
+    <HashRouter>
+      <Routes>
+        <Route path="/" element={<Body />}>
+          <Route index element={<Feed />} />
+          <Route path="login" element={<Login />} />
+          <Route path="profile" element={<Profile />} />
+          <Route path="connections" element={<Connections />} />
+          <Route path="requests" element={<Requests />} />
+          <Route path="premium" element={<Premium />} />
+          <Route path="chat/:targetUserId" element={<Chat />} />
+        </Route>
+      </Routes>
+    </HashRouter>
   );
 }
-
-export default App;
