@@ -25,6 +25,7 @@ const Login = () => {
         { emailId, password },
         { withCredentials: true }
       );
+      
       window.localStorage.setItem("token", res.headers.token)
       dispatch(addUser(res.data));
       navigate("/");

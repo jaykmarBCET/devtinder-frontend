@@ -59,6 +59,7 @@ authRouter.post("/login", async (req, res) => {
             maxAge: 24 * 60 * 60 * 1000, // 1 day
             sameSite:"none"
         });
+        res.setHeader("TOKEN",token)
 
         res.send(user);
     } catch (error) {
